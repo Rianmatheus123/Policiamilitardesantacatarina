@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Consulta de Veículo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      max-width: 400px;
+    }
+    .loading {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    .hidden {
+      display: none;
+    }
+    img {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🚨 Alerta de Veículo 🚨</h2>
+    <p>O sistema detectou uma atividade suspeita com este veículo.</p>
+
+    <!-- 🔧 ALTERE A PLACA AQUI -->
+    <p><strong>Placa:</strong> LXQ-3503</p>
+
+    <div id="status" class="loading">Consultando banco de dados da polícia...</div>
+
+    <div id="resultado" class="hidden">
+      <img src="carro.jpg" alt="Veículo encontrado">
+
+      <!-- 🔧 TEXTO FALSO DE RESULTADO -->
+      <p><strong>Status:</strong> Apreensão pendente.</p>
+      <p>Favor entrar em contato com a delegacia mais próxima.</p>
+
+      <button onclick="revelarZoeira()">Clique aqui para mais informações</button>
+    </div>
+
+    <div id="zoeira" class="hidden">
+      <!-- 🔧 MENSAGEM FINAL DA PEGADINHA -->
+      <h2>😂 PEGADINHA!</h2>
+      <p>Quem tem cú tem medo, zé ruela 🚗💨</p>
+      <audio id="audio" src="gemidao.mp3"></audio>
+    </div>
+  </div>
+
+  <script>
+    // Exibe a "consulta" depois de 3 segundos
+    setTimeout(() => {
+      document.getElementById("status").classList.add("hidden");
+      document.getElementById("resultado").classList.remove("hidden");
+    }, 3000);
+
+    // Revela a zoeira e toca o áudio
+    function revelarZoeira() {
+      document.getElementById("resultado").classList.add("hidden");
+      const zoeira = document.getElementById("zoeira");
+      zoeira.classList.remove("hidden");
+      document.getElementById("audio").play();
+    }
+  </script>
+</body>
+</html>
